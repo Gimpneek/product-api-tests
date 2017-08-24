@@ -12,7 +12,7 @@ Note that these instructions are deliberately open-ended, as a significant compo
 
 Notes and suggestions:
 * Solutions will be judged favorably if they demonstrate an ability to embed your tests in a framework suitable for a modern CICD pipeline.  For instance, providing a Dockerfile with a suitable return code that could be executed in a pipeline is a benefit.
-
+* _No knowledge of Python should be required to complete this task_, beyond the ability to follow instructions and start the sample app running.  If you are unable to get the sample application running, you may alternatively choose a publicly available API to complete the task against.  The API you choose must be reachable from the public internet and it must not be against their T&Cs to use it in this way. 
 
 #### Installation and running the sample app
 

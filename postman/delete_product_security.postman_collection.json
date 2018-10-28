@@ -1,0 +1,46 @@
+{
+	"info": {
+		"_postman_id": "6474ca93-f9b6-435e-8c38-456aaeec2627",
+		"name": "delete_product_security",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1) Try to delete with Drop Table",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0b531571-bb12-4721-b163-c1816701dd2a",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:5000/v1/product/'; DROP TABLE Product;",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"product",
+						"'; DROP TABLE Product;"
+					]
+				},
+				"description": "Delete a product"
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,196 @@
+{
+	"info": {
+		"_postman_id": "a846e964-e091-4b69-ad3f-9585b771e980",
+		"name": "delete_product_negative",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1) Get initial products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ebc0b1e5-4278-4b53-8b15-b7d2f71dd751",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check product IDs are correct\", function () {",
+							"    var productIds = pm.response.json().map(function(item) {",
+							"        return item.id;",
+							"    });",
+							"    pm.expect(productIds).to.eql([1, 2, 3]);",
+							"});",
+							"",
+							"pm.test('Check Product one is Lavender Heart', function () {",
+							"    var product = pm.response.json()[0];",
+							"    pm.expect(product.name).to.eql(\"Lavender heart\");",
+							"});",
+							"",
+							"pm.test(\"Check Product two is Personalised Cufflinks\", function () {",
+							"    var product = pm.response.json()[1];",
+							"    pm.expect(product.name).to.eql(\"Personalised cufflinks\");",
+							"})",
+							"",
+							"pm.test(\"Check Product three is Kids T-shirt\", function () {",
+							"    var product = pm.response.json()[2];",
+							"    pm.expect(product.name).to.eql(\"Kids T-shirt\");",
+							"});",
+							"",
+							"pm.test('Check Product one costs 9.25', function () {",
+							"    var product = pm.response.json()[0];",
+							"    pm.expect(product.price).to.eql(\"9.25\");",
+							"});",
+							"",
+							"pm.test(\"Check Product two costs 45.00\", function () {",
+							"    var product = pm.response.json()[1];",
+							"    pm.expect(product.price).to.eql(\"45.00\");",
+							"})",
+							"",
+							"pm.test(\"Check Product three costs 19.95\", function () {",
+							"    var product = pm.response.json()[2];",
+							"    pm.expect(product.price).to.eql(\"19.95\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2) Delete product 666",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0b531571-bb12-4721-b163-c1816701dd2a",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:5000/v1/product/666",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"product",
+						"666"
+					]
+				},
+				"description": "Delete a product"
+			},
+			"response": []
+		},
+		{
+			"name": "3) Check product list isn't updated",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ebc0b1e5-4278-4b53-8b15-b7d2f71dd751",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check product IDs are correct\", function () {",
+							"    var productIds = pm.response.json().map(function(item) {",
+							"        return item.id;",
+							"    });",
+							"    pm.expect(productIds).to.eql([1, 2, 3]);",
+							"});",
+							"",
+							"pm.test('Check Product one is Lavender Heart', function () {",
+							"    var product = pm.response.json()[0];",
+							"    pm.expect(product.name).to.eql(\"Lavender heart\");",
+							"});",
+							"",
+							"pm.test(\"Check Product two is Personalised Cufflinks\", function () {",
+							"    var product = pm.response.json()[1];",
+							"    pm.expect(product.name).to.eql(\"Personalised cufflinks\");",
+							"})",
+							"",
+							"pm.test(\"Check Product three is Kids T-shirt\", function () {",
+							"    var product = pm.response.json()[2];",
+							"    pm.expect(product.name).to.eql(\"Kids T-shirt\");",
+							"});",
+							"",
+							"pm.test('Check Product one costs 9.25', function () {",
+							"    var product = pm.response.json()[0];",
+							"    pm.expect(product.price).to.eql(\"9.25\");",
+							"});",
+							"",
+							"pm.test(\"Check Product two costs 45.00\", function () {",
+							"    var product = pm.response.json()[1];",
+							"    pm.expect(product.price).to.eql(\"45.00\");",
+							"})",
+							"",
+							"pm.test(\"Check Product three costs 19.95\", function () {",
+							"    var product = pm.response.json()[2];",
+							"    pm.expect(product.price).to.eql(\"19.95\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"products"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

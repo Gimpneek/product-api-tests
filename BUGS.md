@@ -235,3 +235,7 @@ Your code has been rated at -14.75/10
 When the server returns a 400 Bad Request response the error message says `The browser (or proxy) sent a request that this server could not understand`.
 
 This error message isn't useful as it doesn't state what may have caused the request to be bad.
+
+### Dependency security
+There are a number of out of date dependencies including one called `marshmallow` which Github's security alert flagged as High Severity. Using tools like PyUp.io
+would catch these and prevent pull requests being merged in until these were resolved.

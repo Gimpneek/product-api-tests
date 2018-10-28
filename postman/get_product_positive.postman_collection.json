@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "879d6187-4589-44c1-9852-3400411d5e6a",
+		"name": "get_product_positive",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1) Get the first product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a53cdc7a-efcb-46cf-8fe7-b61d0cde3b45",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test('Check Product one id is 1', function () {",
+							"    var product = pm.response.json();",
+							"    pm.expect(product.id).to.eql(1);",
+							"});",
+							"",
+							"pm.test('Check Product one is Lavender Heart', function () {",
+							"    var product = pm.response.json();",
+							"    pm.expect(product.name).to.eql(\"Lavender heart\");",
+							"});",
+							"",
+							"pm.test('Check Product one costs 9.25', function () {",
+							"    var product = pm.response.json();",
+							"    pm.expect(product.price).to.eql(\"9.25\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "size",
+							"value": "original",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/product/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"product",
+						"1"
+					]
+				},
+				"description": "Return a single product"
+			},
+			"response": []
+		},
+		{
+			"name": "1) Get the second product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a53cdc7a-efcb-46cf-8fe7-b61d0cde3b45",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test('Check Product one id is 2', function () {",
+							"    var product = pm.response.json();",
+							"    pm.expect(product.id).to.eql(2);",
+							"});",
+							"",
+							"pm.test('Check Product one is Personalised Cufflinks', function () {",
+							"    var product = pm.response.json();",
+							"    pm.expect(product.name).to.eql(\"Personalised cufflinks\");",
+							"});",
+							"",
+							"pm.test('Check Product one costs 45.00', function () {",
+							"    var product = pm.response.json();",
+							"    pm.expect(product.price).to.eql(\"45.00\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "size",
+							"value": "original",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/product/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"product",
+						"2"
+					]
+				},
+				"description": "Return a single product"
+			},
+			"response": []
+		},
+		{
+			"name": "1) Get the third product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a53cdc7a-efcb-46cf-8fe7-b61d0cde3b45",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test('Check Product one id is 3', function () {",
+							"    var product = pm.response.json();",
+							"    pm.expect(product.id).to.eql(3);",
+							"});",
+							"",
+							"pm.test('Check Product one is Kids T-shirt', function () {",
+							"    var product = pm.response.json();",
+							"    pm.expect(product.name).to.eql(\"Kids T-shirt\");",
+							"});",
+							"",
+							"pm.test('Check Product one costs 19.95', function () {",
+							"    var product = pm.response.json();",
+							"    pm.expect(product.price).to.eql(\"19.95\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "size",
+							"value": "original",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/product/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"product",
+						"3"
+					]
+				},
+				"description": "Return a single product"
+			},
+			"response": []
+		}
+	]
+}

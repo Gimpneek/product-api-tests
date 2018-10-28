@@ -3,7 +3,7 @@ python:
   - 3.6
 install:
   - make install
-  - npm install newman
+  - npm install -g newman
 before_script:
   - make run_server
 script:

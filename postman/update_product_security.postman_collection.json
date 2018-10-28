@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "731efa9c-1a9d-4b98-9661-2c287b14b2e9",
+		"name": "update_product_security",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1) Update product with DROP Table",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d586003b-1b7d-4146-9395-955174a93d2a",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7be9dd1a-18ab-403a-80fd-2c4d47e3aafb",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "price",
+							"value": "6.66",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/product/1; DROP TABLE Product;",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"product",
+						"1; DROP TABLE Product;"
+					]
+				},
+				"description": "Update a product"
+			},
+			"response": []
+		},
+		{
+			"name": "2) Update product with OR 1 = 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d586003b-1b7d-4146-9395-955174a93d2a",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7be9dd1a-18ab-403a-80fd-2c4d47e3aafb",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "price",
+							"value": "6.66",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/product/1 OR 1=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"product",
+						"1 OR 1=1"
+					]
+				},
+				"description": "Update a product"
+			},
+			"response": []
+		}
+	]
+}

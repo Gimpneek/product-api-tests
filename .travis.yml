@@ -1,12 +1,15 @@
 language: python
 python:
   - 3.6
+env:
+  - TEST_NAME=add_product_positive
+  - TEST_NAME=add_product_negative
 install:
   - make install
   - npm install -g newman
 before_script:
   - make run_server
 script:
-  - newman run postman/add_product.postman_collection.json
+  - newman run postman/${TEST_NAME}.postman_collection.json
 after_script:
   - make stop_server

@@ -3,6 +3,10 @@ python:
   - 3.6
 install:
   - make install
-script:
+  - npm install -g newman
+before_script:
   - make run_server
+script:
+  - newman run postman/add_product.postman_collection.json
+after_script:
   - make stop_server

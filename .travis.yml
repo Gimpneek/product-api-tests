@@ -4,6 +4,7 @@ python:
 env:
   - TEST_NAME=add_product_positive
   - TEST_NAME=add_product_negative
+  - TEST_NAME=add_product_security
 install:
   - make install
   - npm install -g newman

@@ -7,3 +7,7 @@ run_server:
 
 stop_server:
 	kill -9 `cat app.pid`
+
+reset_db:
+	@rm /tmp/test.db
+	python db_create.py

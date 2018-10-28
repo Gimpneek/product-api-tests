@@ -352,6 +352,218 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "6) Create a new product with 256+ character name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d5d4c244-65dd-4549-b5c7-9959ba14c2b5",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.sendRequest('http://localhost:5000/v1/products', function (err, res) {",
+							"    pm.test('Check not addded to product list', function() {",
+							"        var productIds = res.json().map(function(item) {",
+							"            return item.id;",
+							"        });",
+							"        pm.expect(productIds).to.eql([1, 2, 3]);",
+							"    });",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c944165a-af6c-421c-8c9f-5f2bef119adc",
+						"exec": [
+							"var uuid = require('uuid');",
+							"var name = uuid();",
+							"for(var i = 0; i < 10; i++) {",
+							"    name += uuid();",
+							"}",
+							"pm.globals.set('productName', name);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{productName}}",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "6.66",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7) Create a new product with max float",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d5d4c244-65dd-4549-b5c7-9959ba14c2b5",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.sendRequest('http://localhost:5000/v1/products', function (err, res) {",
+							"    pm.test('Check not addded to product list', function() {",
+							"        var productIds = res.json().map(function(item) {",
+							"            return item.id;",
+							"        });",
+							"        pm.expect(productIds).to.eql([1, 2, 3]);",
+							"    });",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c944165a-af6c-421c-8c9f-5f2bef119adc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{productName}}",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "1.7976931348623157e+308",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8) Create product with string for price",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d5d4c244-65dd-4549-b5c7-9959ba14c2b5",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.sendRequest('http://localhost:5000/v1/products', function (err, res) {",
+							"    pm.test('Check not addded to product list', function() {",
+							"        var productIds = res.json().map(function(item) {",
+							"            return item.id;",
+							"        });",
+							"        pm.expect(productIds).to.eql([1, 2, 3]);",
+							"    });",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c944165a-af6c-421c-8c9f-5f2bef119adc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{productName}}",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "127.0.0.1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"product"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

@@ -1,0 +1,357 @@
+{
+	"info": {
+		"_postman_id": "4e8922ca-0aa2-4d3a-aabb-be59b60fd864",
+		"name": "add_product_negative",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1) Get initial products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ebc0b1e5-4278-4b53-8b15-b7d2f71dd751",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check product IDs are correct\", function () {",
+							"    var productIds = pm.response.json().map(function(item) {",
+							"        return item.id;",
+							"    });",
+							"    pm.expect(productIds).to.eql([1, 2, 3]);",
+							"});",
+							"",
+							"pm.test('Check Product one is Lavender Heart', function () {",
+							"    var product = pm.response.json()[0];",
+							"    pm.expect(product.name).to.eql(\"Lavender heart\");",
+							"});",
+							"",
+							"pm.test(\"Check Product two is Personalised Cufflinks\", function () {",
+							"    var product = pm.response.json()[1];",
+							"    pm.expect(product.name).to.eql(\"Personalised cufflinks\");",
+							"})",
+							"",
+							"pm.test(\"Check Product three is Kids T-shirt\", function () {",
+							"    var product = pm.response.json()[2];",
+							"    pm.expect(product.name).to.eql(\"Kids T-shirt\");",
+							"});",
+							"",
+							"pm.test('Check Product one costs 9.25', function () {",
+							"    var product = pm.response.json()[0];",
+							"    pm.expect(product.price).to.eql(\"9.25\");",
+							"});",
+							"",
+							"pm.test(\"Check Product two costs 45.00\", function () {",
+							"    var product = pm.response.json()[1];",
+							"    pm.expect(product.price).to.eql(\"45.00\");",
+							"})",
+							"",
+							"pm.test(\"Check Product three costs 19.95\", function () {",
+							"    var product = pm.response.json()[2];",
+							"    pm.expect(product.price).to.eql(\"19.95\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2) Create a new product without name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d5d4c244-65dd-4549-b5c7-9959ba14c2b5",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.sendRequest('http://localhost:5000/v1/products', function (err, res) {",
+							"    pm.test('Check not addded to product list', function() {",
+							"        var productIds = res.json().map(function(item) {",
+							"            return item.id;",
+							"        });",
+							"        pm.expect(productIds).to.eql([1, 2, 3]);",
+							"    });",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c944165a-af6c-421c-8c9f-5f2bef119adc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{productName}}",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "6.66",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3) Create a new product without price",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d5d4c244-65dd-4549-b5c7-9959ba14c2b5",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.sendRequest('http://localhost:5000/v1/products', function (err, res) {",
+							"    pm.test('Check not addded to product list', function() {",
+							"        var productIds = res.json().map(function(item) {",
+							"            return item.id;",
+							"        });",
+							"        pm.expect(productIds).to.eql([1, 2, 3]);",
+							"    });",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c944165a-af6c-421c-8c9f-5f2bef119adc",
+						"exec": [
+							"var uuid = require('uuid');",
+							"pm.globals.set('productName', uuid());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{productName}}",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "6.66",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4) Create a new product without data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d5d4c244-65dd-4549-b5c7-9959ba14c2b5",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.sendRequest('http://localhost:5000/v1/products', function (err, res) {",
+							"    pm.test('Check not addded to product list', function() {",
+							"        var productIds = res.json().map(function(item) {",
+							"            return item.id;",
+							"        });",
+							"        pm.expect(productIds).to.eql([1, 2, 3]);",
+							"    });",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c944165a-af6c-421c-8c9f-5f2bef119adc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{productName}}",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "6.66",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5) Create a new product sending JSON",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d5d4c244-65dd-4549-b5c7-9959ba14c2b5",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.sendRequest('http://localhost:5000/v1/products', function (err, res) {",
+							"    pm.test('Check not addded to product list', function() {",
+							"        var productIds = res.json().map(function(item) {",
+							"            return item.id;",
+							"        });",
+							"        pm.expect(productIds).to.eql([1, 2, 3]);",
+							"    });",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c944165a-af6c-421c-8c9f-5f2bef119adc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Meh\",\n\t\"price\": \"6.66\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"product"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

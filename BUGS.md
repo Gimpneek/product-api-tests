@@ -1,9 +1,9 @@
 # Bugs found while testing
 
 ## RESTful API compliance
-- DELETE operation returns 200 instead of 204
-- POST operation returns 200 instead of 201
-- /Product endpoint doesn't follow REST's collection-resource design principles. Should be /Products similar to GET operation.
+- `DELETE` operation returns `200 OK` instead of `204 No Content`
+- `POST` operation returns `200 OK` instead of `201 Created`
+- `/Product` endpoint doesn't follow REST's collection-resource design principles. Should be `/Products` similar to `GET` operation.
 
 ## Swagger documentation
 - The `product_code` in the response doesn't match up to the actual API which instead returns `id`.
@@ -232,7 +232,7 @@ Your code has been rated at -14.75/10
 ```
 
 ## Error Messages
-When the server returns a 400 Bad Request response the error message says `The browser (or proxy) sent a request that this server could not understand`.
+When the server returns a `400 Bad Request` response the error message says `The browser (or proxy) sent a request that this server could not understand`.
 
 This error message isn't useful as it doesn't state what may have caused the request to be bad.
 

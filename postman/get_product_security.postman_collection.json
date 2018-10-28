@@ -1,17 +1,17 @@
 {
 	"info": {
-		"_postman_id": "6474ca93-f9b6-435e-8c38-456aaeec2627",
-		"name": "delete_product_security",
+		"_postman_id": "10314002-63da-46c1-a3ab-7344d4789030",
+		"name": "get_product_security",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "1) Try to delete with Drop Table",
+			"name": "1) Get product with DROP TABLE in name",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "0b531571-bb12-4721-b163-c1816701dd2a",
+						"id": "a53cdc7a-efcb-46cf-8fe7-b61d0cde3b45",
 						"exec": [
 							"pm.test(\"Status code is 404\", function () {",
 							"    pm.response.to.have.status(404);",
@@ -22,11 +22,20 @@
 				}
 			],
 			"request": {
-				"method": "DELETE",
+				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "size",
+							"value": "original",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "http://localhost:5000/v1/product/'; DROP TABLE Product;",
+					"raw": "http://localhost:5000/v1/product/1; DROP TABLE Product;",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -35,20 +44,20 @@
 					"path": [
 						"v1",
 						"product",
-						"'; DROP TABLE Product;"
+						"1; DROP TABLE Product;"
 					]
 				},
-				"description": "Delete a product"
+				"description": "Return a single product"
 			},
 			"response": []
 		},
 		{
-			"name": "2) Try to delete with OR 1 =1",
+			"name": "2) Get product with OR 1 = 1",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "0b531571-bb12-4721-b163-c1816701dd2a",
+						"id": "a53cdc7a-efcb-46cf-8fe7-b61d0cde3b45",
 						"exec": [
 							"pm.test(\"Status code is 404\", function () {",
 							"    pm.response.to.have.status(404);",
@@ -59,9 +68,18 @@
 				}
 			],
 			"request": {
-				"method": "DELETE",
+				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "size",
+							"value": "original",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
 					"raw": "http://localhost:5000/v1/product/1 OR 1=1",
 					"protocol": "http",
@@ -75,7 +93,7 @@
 						"1 OR 1=1"
 					]
 				},
-				"description": "Delete a product"
+				"description": "Return a single product"
 			},
 			"response": []
 		}

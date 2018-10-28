@@ -8,6 +8,9 @@ env:
   - TEST_NAME=delete_product_positive
   - TEST_NAME=delete_product_negative
   - TEST_NAME=delete_product_security
+  - TEST_NAME=get_product_positive
+  - TEST_NAME=get_product_negative
+  - TEST_NAME=get_product_security
 install:
   - make install
   - npm install -g newman
